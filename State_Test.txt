@@ -1,0 +1,41 @@
+module state_test();
+    reg clk, rst, s_in;
+    wire valid;
+
+    state dut(.clk(clk), .rst(rst), .s_in(s_in), .valid(valid));
+
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        s_in = 0;
+        rst = 0;
+        #10
+        rst = 1;
+        fix_sequence();
+        fix_sequence_random();
+        #1000 $finish;
+    end
+
+    task fix_sequence;
+        integer i;
+        begin
+            for (i = 0; i < 20; i++) begin
+                #10 s_in = 0;
+                #10 s_in = 1;
+            end
+        end
+    endtask
+
+    task fix_sequence_random;
+        integer i;
+        begin
+            for (i = 0; i < 20; i++) begin
+                s_in = $random % 2;
+            end
+        end
+    endtask
+
+endmodule

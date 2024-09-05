@@ -1,0 +1,78 @@
+module state (
+    input clk, rst, s_in,
+    output reg valid
+);
+
+parameter init  = 3'b0;
+parameter d0    = 3'b001;
+parameter d10   = 3'b010;
+parameter d101  = 3'b011;
+parameter d1010 = 3'b100;
+
+reg [2:0] nextstate, currentstate;
+
+always @(*) begin
+    case (currentstate[2:0])
+        init: begin
+            if (s_in)
+                nextstate[2:0] = d0;
+            else
+                nextstate[2:0] = currentstate[2:0];
+        end
+
+
+   	d0: begin
+            if (~s_in)
+                nextstate[2:0] = d10;
+            else
+                nextstate[2:0] = init;
+        end
+
+
+        d10: begin
+            if (s_in)
+                nextstate[2:0] = d101;
+            else
+                nextstate[2:0] = init;
+        end
+
+
+        d101: begin
+            if (~s_in)
+                nextstate[2:0] = d1010;
+            else
+                nextstate[2:0] = d0;
+        end
+
+
+ 	d1010: begin
+           if(s_in)
+           	nextstate[2:0] = d0;
+           else
+           	nextstate[2:0] = d10 ;
+        end
+
+
+        default: nextstate[2:0] = init;
+    endcase
+end
+
+
+
+always @(posedge clk or negedge rst) begin
+    if (~rst)
+        currentstate[2:0] <= init;
+    else
+        currentstate[2:0] <= nextstate[2:0];
+end
+
+
+
+always @(*) begin
+    if (currentstate[2:0] == d1010)
+        valid = 1'b1;
+    else
+        valid = 1'b0;
+end
+
+endmodule

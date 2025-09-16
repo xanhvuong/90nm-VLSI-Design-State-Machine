@@ -6,8 +6,8 @@ This repository not only includes FSM-related files and examples, but also essen
 - Full Custom IC Design Using Synopsys Galaxy.pdf: Documentation on full custom IC design using the Synopsys Galaxy tool suite.
 - ICC II_PHYSICAL SYNTHESIS.pdf: Material on physical synthesis in IC design.
 - SAED90nm_Design_Rules.pdf and SAED90nm_Interoperable_Process_Design_Kit.pdf: Design rules and PDK for SAED 90nm technology.
-- State.txt and State_Test.txt: Files describing and testing the FSM states.
--lab.zip: Contains source files and lab exercises for the project.
+- State.txt and State_Test.txt: Files source code for describing and testing the FSM states.
+- lab.zip: Contains source files and lab exercises for the project.
 
 Objectives
 - Understand the working principles of a Finite State Machine.

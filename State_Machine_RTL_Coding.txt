@@ -1,3 +1,6 @@
+// This code is the RTL Design for the State Machine 
+// The Objective was detecting by detector and storing using flip flop a string of 1010 bit 
+
 module state (
     input clk, rst, s_in,
     output reg valid
@@ -74,5 +77,6 @@ always @(*) begin
     else
         valid = 1'b0;
 end
+
 
 endmodule

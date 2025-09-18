@@ -1,3 +1,6 @@
+// This code is a Verilog testbench for the state FSM module, providing clock, reset, and input stimulus.
+// The objective is to verify the FSM’s behavior by applying both fixed and random input sequences and observing the valid output.
+
 module state_test();
     reg clk, rst, s_in;
     wire valid;
@@ -37,5 +40,6 @@ module state_test();
             end
         end
     endtask
+
 
 endmodule
